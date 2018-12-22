@@ -1,0 +1,957 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+12/22/2018   4:37 PM
+
+INPUT INSTRUCTIONS
+
+  MONTECARLO:
+  NAMES ARE y1-y4;
+  NOBSERVATIONS = 800;
+  NREP = 1;
+  SEED = 12345;
+  SAVE = test.txt;
+  GENCLASSES = c(3);
+  CLASSES = c(3);
+
+  ANALYSIS:
+  TYPE = MIXTURE;
+  ESTIMATOR = MLR;
+
+  MODEL POPULATION:
+
+  %overall%
+  [y1-y4*0];
+  i s | y1@0 y2@1 y3@2 y4@3;
+  y1-y4*15(yerr)
+  i*18;
+  s*2;
+  i WITH s*1.20;
+
+  %c#1%
+  [i*48](i1);
+  [s*3];
+
+  %c#2%
+  [i*42.802](i2);
+  [s*4];
+
+  %c#3%
+  [i*37.6](i3);
+  [s*3];
+
+  MODEL:
+
+  %overall%
+  [y1-y4@0];
+  i s | y1@0 y2@1 y3@2 y4@3;
+  y1-y4*15(yerr)
+  i*18;
+  s*2;
+  i WITH s*1.20;
+
+  %c#1%
+
+  [i*48](i1);
+  [s*3](s1);
+
+  %c#2%
+
+  [i*42.802](i2);
+  [s*4](s2);
+
+  %c#3%
+  [i*37.6](i3);
+  [s*3](s3);
+
+  MODEL CONSTRAINT:
+
+  i1 > i2;
+  i2 > i3;
+  i1 > i3;
+
+  !overview of statements
+  !https://www.statmodel.com/HTML_UG/chapter17V8.htm
+
+  !MCMC examples
+  !https://www.statmodel.com/usersguide/chapter12.shtml
+
+  !Analysis examples
+  !https://www.statmodel.com/usersguide/chapter8.shtml
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         800
+
+Number of replications
+    Requested                                                    1
+    Completed                                                    1
+Value of seed                                                12345
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   Y1          Y2          Y3          Y4
+
+Continuous latent variables
+   I           S
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+
+
+SAMPLE STATISTICS FOR THE FIRST REPLICATION
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+               43.166        46.208        49.428        52.653
+
+
+           Covariances
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            50.271
+ Y2            35.919        52.761
+ Y3            37.839        42.872        64.400
+ Y4            42.088        47.903        56.733        82.955
+
+
+           Correlations
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1             1.000
+ Y2             0.697         1.000
+ Y3             0.665         0.735         1.000
+ Y4             0.652         0.724         0.776         1.000
+
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       12
+
+Loglikelihood
+
+    H0 Value
+
+        Mean                            -10070.774
+        Std Dev                              0.000
+        Number of successful computations        1
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.000       -10070.774     -10070.774
+           0.980       0.000       -10070.774     -10070.774
+           0.950       0.000       -10070.774     -10070.774
+           0.900       0.000       -10070.774     -10070.774
+           0.800       0.000       -10070.774     -10070.774
+           0.700       0.000       -10070.774     -10070.774
+           0.500       0.000       -10070.774     -10070.774
+           0.300       0.000       -10070.774     -10070.774
+           0.200       0.000       -10070.774     -10070.774
+           0.100       0.000       -10070.774     -10070.774
+           0.050       0.000       -10070.774     -10070.774
+           0.020       0.000       -10070.774     -10070.774
+           0.010       0.000       -10070.774     -10070.774
+
+Information Criteria
+
+    Akaike (AIC)
+
+        Mean                             20165.547
+        Std Dev                              0.000
+        Number of successful computations        1
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.000        20165.547      20165.547
+           0.980       0.000        20165.547      20165.547
+           0.950       0.000        20165.547      20165.547
+           0.900       0.000        20165.547      20165.547
+           0.800       0.000        20165.547      20165.547
+           0.700       0.000        20165.547      20165.547
+           0.500       0.000        20165.547      20165.547
+           0.300       0.000        20165.547      20165.547
+           0.200       0.000        20165.547      20165.547
+           0.100       0.000        20165.547      20165.547
+           0.050       0.000        20165.547      20165.547
+           0.020       0.000        20165.547      20165.547
+           0.010       0.000        20165.547      20165.547
+
+    Bayesian (BIC)
+
+        Mean                             20221.762
+        Std Dev                              0.000
+        Number of successful computations        1
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.000        20221.762      20221.762
+           0.980       0.000        20221.762      20221.762
+           0.950       0.000        20221.762      20221.762
+           0.900       0.000        20221.762      20221.762
+           0.800       0.000        20221.762      20221.762
+           0.700       0.000        20221.762      20221.762
+           0.500       0.000        20221.762      20221.762
+           0.300       0.000        20221.762      20221.762
+           0.200       0.000        20221.762      20221.762
+           0.100       0.000        20221.762      20221.762
+           0.050       0.000        20221.762      20221.762
+           0.020       0.000        20221.762      20221.762
+           0.010       0.000        20221.762      20221.762
+
+    Sample-Size Adjusted BIC (n* = (n + 2) / 24)
+
+        Mean                             20183.656
+        Std Dev                              0.000
+        Number of successful computations        1
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.000        20183.656      20183.656
+           0.980       0.000        20183.656      20183.656
+           0.950       0.000        20183.656      20183.656
+           0.900       0.000        20183.656      20183.656
+           0.800       0.000        20183.656      20183.656
+           0.700       0.000        20183.656      20183.656
+           0.500       0.000        20183.656      20183.656
+           0.300       0.000        20183.656      20183.656
+           0.200       0.000        20183.656      20183.656
+           0.100       0.000        20183.656      20183.656
+           0.050       0.000        20183.656      20183.656
+           0.020       0.000        20183.656      20183.656
+           0.010       0.000        20183.656      20183.656
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        385.01038          0.48126
+       2        133.87564          0.16734
+       3        281.11398          0.35139
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        385.01032          0.48126
+       2        133.87582          0.16734
+       3        281.11386          0.35139
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              442          0.55250
+       2               80          0.10000
+       3              278          0.34750
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.358
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3
+
+    1   0.683    0.158    0.159
+    2   0.303    0.590    0.107
+    3   0.212    0.061    0.727
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3
+
+    1   0.784    0.063    0.153
+    2   0.520    0.353    0.127
+    3   0.251    0.030    0.719
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3
+
+    1      1.635   -0.888    0.000
+    2      1.409    1.019    0.000
+    3     -1.054   -3.160    0.000
+
+
+MODEL RESULTS
+
+                              ESTIMATES              S. E.     M. S. E.  95%  % Sig
+                 Population   Average   Std. Dev.   Average             Cover Coeff
+Latent Class 1
+
+ I        |
+  Y1                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ S        |
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  2.000     2.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  3.000     3.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ I        WITH
+  S                   1.200     1.2558     0.0000     2.2455     0.0031 1.000 0.000
+
+ Means
+  I                  48.000    46.4923     0.0000     1.5857     2.2733 1.000 1.000
+  S                   3.000     2.9377     0.0000     0.7033     0.0039 1.000 1.000
+
+ Intercepts
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ Variances
+  I                  18.000    20.0325     0.0000     6.8340     4.1311 1.000 1.000
+  S                   2.000     1.1195     0.0000     0.6943     0.7752 1.000 0.000
+
+ Residual Variances
+  Y1                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y2                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y3                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y4                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+
+Latent Class 2
+
+ I        |
+  Y1                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ S        |
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  2.000     2.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  3.000     3.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ I        WITH
+  S                   1.200     1.2558     0.0000     2.2455     0.0031 1.000 0.000
+
+ Means
+  I                  42.802    43.3891     0.0000     2.2566     0.3447 1.000 1.000
+  S                   4.000     5.3259     0.0000     1.0619     1.7580 1.000 1.000
+
+ Intercepts
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ Variances
+  I                  18.000    20.0325     0.0000     6.8340     4.1311 1.000 1.000
+  S                   2.000     1.1195     0.0000     0.6943     0.7752 1.000 0.000
+
+ Residual Variances
+  Y1                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y2                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y3                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y4                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+
+Latent Class 3
+
+ I        |
+  Y1                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ S        |
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  1.000     1.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  2.000     2.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  3.000     3.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ I        WITH
+  S                   1.200     1.2558     0.0000     2.2455     0.0031 1.000 0.000
+
+ Means
+  I                  37.600    38.3486     0.0000     1.1296     0.5604 1.000 1.000
+  S                   3.000     2.4560     0.0000     0.6595     0.2960 1.000 1.000
+
+ Intercepts
+  Y1                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y2                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y3                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+  Y4                  0.000     0.0000     0.0000     0.0000     0.0000 1.000 0.000
+
+ Variances
+  I                  18.000    20.0325     0.0000     6.8340     4.1311 1.000 1.000
+  S                   2.000     1.1195     0.0000     0.6943     0.7752 1.000 0.000
+
+ Residual Variances
+  Y1                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y2                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y3                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+  Y4                 15.000    15.2037     0.0000     0.5379     0.0415 1.000 1.000
+
+Categorical Latent Variables
+
+ Means
+  C#1                 0.000     0.3145     0.0000     0.4629     0.0989 1.000 0.000
+  C#2                 0.000    -0.7418     0.0000     1.0249     0.5503 1.000 0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Average Condition Number for the Information Matrix      0.588E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                    0             0             0             0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1                 0             0
+ Y2                 0             0
+ Y3                 0             0
+ Y4                 0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1                 1
+ Y2                 0             1
+ Y3                 0             0             1
+ Y4                 0             0             0             1
+
+
+           ALPHA
+              I             S
+              ________      ________
+                    2             3
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  4
+ S                  5             6
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                    0             0             0             0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1                 0             0
+ Y2                 0             0
+ Y3                 0             0
+ Y4                 0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1                 1
+ Y2                 0             1
+ Y3                 0             0             1
+ Y4                 0             0             0             1
+
+
+           ALPHA
+              I             S
+              ________      ________
+                    7             8
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  4
+ S                  5             6
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 3
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                    0             0             0             0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1                 0             0
+ Y2                 0             0
+ Y3                 0             0
+ Y4                 0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1                 1
+ Y2                 0             1
+ Y3                 0             0             1
+ Y4                 0             0             0             1
+
+
+           ALPHA
+              I             S
+              ________      ________
+                    9            10
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  4
+ S                  5             6
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3
+              ________      ________      ________
+                   11            12             0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               48.000         3.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               42.802         4.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     STARTING VALUES FOR LATENT CLASS 3
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               37.600         3.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+     POPULATION VALUES FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               48.000         3.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     POPULATION VALUES FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               42.802         4.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     POPULATION VALUES FOR LATENT CLASS 3
+
+
+           NU
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ Y1             1.000         0.000
+ Y2             1.000         1.000
+ Y3             1.000         2.000
+ Y4             1.000         3.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4
+              ________      ________      ________      ________
+ Y1            15.000
+ Y2             0.000        15.000
+ Y3             0.000         0.000        15.000
+ Y4             0.000         0.000         0.000        15.000
+
+
+           ALPHA
+              I             S
+              ________      ________
+               37.600         3.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I             18.000
+ S              1.200         2.000
+
+
+     POPULATION VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+SAVEDATA INFORMATION
+
+  Order of variables
+
+    Y1
+    Y2
+    Y3
+    Y4
+    C
+
+  Save file
+    test.txt
+
+  Save file format           Free
+  Save file record length    10000
+
+
+     Beginning Time:  16:37:45
+        Ending Time:  16:37:45
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

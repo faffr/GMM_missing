@@ -1,0 +1,73 @@
+MONTECARLO:
+NAMES ARE y1-y4;
+NOBSERVATIONS = 800;
+NREP = 1;
+SEED = 123461;
+SAVE = generated_data.txt;
+GENCLASSES = c(3);
+CLASSES = c(3);
+
+ANALYSIS:
+TYPE = MIXTURE;
+ESTIMATOR = MLR;
+
+MODEL POPULATION:
+
+%overall%
+[y1-y4*0];
+i s | y1@0 y2@1 y3@2 y4@3;
+y1-y4*15(yerr)
+i*18;
+s*2;
+i WITH s*1.20;
+
+%c#1%
+[i*48](i1);
+[s*3];
+
+%c#2%
+[i*42.802](i2); 
+[s*4];
+
+%c#3%
+[i*37.6](i3);
+[s*3];
+
+MODEL:
+
+%overall%
+[y1-y4@0];
+i s | y1@0 y2@1 y3@2 y4@3;
+y1-y4*15(yerr)
+i*18; 
+s*2;
+i WITH s*1.20;
+
+%c#1%
+
+[i*48](i1); 
+[s*3](s1);
+
+%c#2%
+
+[i*42.802](i2); 
+[s*4](s2);
+
+%c#3%
+[i*37.6](i3);
+[s*3](s3);
+
+MODEL CONSTRAINT:
+
+i1 > i2;
+i2 > i3;
+i1 > i3;
+
+!overview of statements
+!https://www.statmodel.com/HTML_UG/chapter17V8.htm
+
+!MCMC examples
+!https://www.statmodel.com/usersguide/chapter12.shtml
+
+!Analysis examples
+!https://www.statmodel.com/usersguide/chapter8.shtml
